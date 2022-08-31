@@ -1,0 +1,75 @@
+
+
+<% if user_signed_in? %>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#"><%= "Hello, #{current_user.email}" %></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <%= "Hello, #{current_user.email}" %>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-md-auto gap-2">
+        <li class="nav-item rounded">
+          <a class="nav-link active" aria-current="page", root_path><i class="bi bi-house-fill me-2"></i>Home</a>
+        </li>
+        <li class="nav-item rounded">
+          <a class="nav-link" href="https://documenter.getpostman.com/view/23038467/VUxNRTLC#9a112aa3-446b-46d0-b520-90f5e2c223bc"><i class="bi bi-people-fill me-2"></i>Api Documentation</a>
+        </li>
+        <li class="nav-item rounded">
+          <i class="bi bi-telephone-fill me-2"><%= link_to "Web Books", books_path ,class: "nav-link "  %> </i>        </li>
+        <li class="nav-item dropdown rounded">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-person-fill me-2"></i>Profile</a>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+            <li><%= link_to "Web Books", books_path ,class: "dropdown-item"  %></li>
+            <li><a class="dropdown-item" href="#">Another action</a></li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li><%= button_to "logout", destroy_user_session_path, method: :delete, class: "dropdown-item"  %></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  <p align="center">You can test APi</p>
+<div class="container">
+<%= @application.as_json %>
+    <ul>
+       
+        <li><%= link_to "API V1 Books", api_v1_books_path %></li> 
+        <li><%= link_to "API V1 Android Books", api_v1_android_books_path %></li>
+    </ul>
+
+</div>  
+    
+<% else %>
+
+    <%= link_to "Sign in", new_user_session_path %> <br />
+    <%= link_to "Sign up", new_user_registration_path %>
+
+
+    
+<% end %>
+  
+
+
+<style>
+    body {
+  font-family: Montserrat, sans-serif;
+}
+.navbar-brand {
+  
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 48px;
+  height: 48px;
+}
+
+.navbar-nav .nav-item:hover {
+  background-color: rgba(180, 190, 203, 0.4);
+}
+</style>
